@@ -20,6 +20,8 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data["title"] = "Homepage";
+		$data["include_gmaps"] = TRUE;
+		
 		$this->load->view('public/home', $data);
 	}
 }

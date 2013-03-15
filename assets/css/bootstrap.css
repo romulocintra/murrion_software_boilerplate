@@ -5891,3 +5891,7 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+
+#gmap img, #gmap object, #gmap embed { max-width: none; }
+
+.gmap_list img, .gmap_list object, .gmap_list embed { max-width: none; }

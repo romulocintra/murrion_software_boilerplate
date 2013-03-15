@@ -47,6 +47,11 @@
     <script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="<?php echo base_url() ?>assets/js/javascript.js"></script>
+    
+    <?php if (isset($include_gmaps)) : ?>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&region=uk&language=en"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/js/gmaps.js"></script>
+    <?php endif ?>
   </body>
 
 </html>
