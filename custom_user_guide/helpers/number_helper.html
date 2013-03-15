@@ -1,19 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
     <title>Number Helper : CodeIgniter User Guide</title>
-    <style media="all" type="text/css">@import url('../userguide.css');</style>
-    <link href="../userguide.css" media="all" type="text/css" rel="stylesheet" />
-    <script src="../nav/nav.js" type="text/javascript"></script>
-    <script src="../nav/prototype.lite.js" type="text/javascript"></script>
-    <script src="../nav/moo.fx.js" type="text/javascript"></script>
-    <script src="../nav/user_guide_menu.js" type="text/javascript"></script>
-    <meta content="-1" http-equiv="expires" />
-    <meta content="no-cache" http-equiv="pragma" />
-    <meta content="all" name="robots" />
-    <meta content="ExpressionEngine Dev Team" name="author" />
-    <meta content="CodeIgniter User Guide" name="description" />
+    <style type="text/css" media="all">@import url('../userguide.css');</style>
+    <link rel="stylesheet" type="text/css" media="all" href="../userguide.css" />
+    <script type="text/javascript" src="../nav/nav.js"></script>
+    <script type="text/javascript" src="../nav/prototype.lite.js"></script>
+    <script type="text/javascript" src="../nav/moo.fx.js"></script>
+    <script type="text/javascript" src="../nav/user_guide_menu.js"></script>
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="robots" content="all" />
+    <meta name="author" content="ExpressionEngine Dev Team" />
+    <meta name="description" content="CodeIgniter User Guide" />
   </head>
   <body>
     <!-- START NAVIGATION -->
@@ -21,9 +21,9 @@
       <div id="nav_inner">
         <script type="text/javascript">create_menu('../');</script></div>
     </div>
-    <div id="nav2"><a name="top"></a><a onclick="myHeight.toggle();" href="javascript:void(0);"><img
-          height="43" width="154" border="0" alt="Toggle Table of Contents" title="Toggle Table of Contents"
-          src="../images/nav_toggle_darker.jpg" /></a></div>
+    <div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img
+          height="43" width="154" border="0" src="../images/nav_toggle_darker.jpg"
+          title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
     <div id="masthead">
       <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
         <tbody>
@@ -42,22 +42,19 @@
     <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
       <tbody>
         <tr>
-          <td id="breadcrumb">
-            <a href="../index.html">User Guide Home</a>  › 
-            Number Helper
-          </td>
+          <td id="breadcrumb"> <a href="../index.html">User Guide Home</a>  › 
+            Number Helper </td>
           <td id="searchbox">
-            <form action="http://www.google.com/search" method="get"><input type="hidden"
-                value="codeigniter.com/user_guide/" id="as_sitesearch" name="as_sitesearch" />Search
-              User Guide  <input type="text" value="" maxlength="255" size="31"
-                id="q" name="q" style="width:200px;" class="input" /> <input type="submit"
-                value="Go" name="sa" class="submit" /></form>
+            <form method="get" action="http://www.google.com/search"><input type="hidden"
+                name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />Search
+              User Guide  <input type="text" class="input" style="width:200px;"
+                name="q" id="q" size="31" maxlength="255" value="" /> <input type="submit"
+                class="submit" name="sa" value="Go" /></form>
           </td>
         </tr>
       </tbody>
     </table>
-    <!-- END BREADCRUMB -->
-    <br clear="all" />
+    <!-- END BREADCRUMB --> <br clear="all" />
     <!-- START CONTENT -->
     <div id="content">
       <h1>Number Helper</h1>
@@ -67,35 +64,28 @@
       <p>This helper is loaded using the following code:</p>
       <code>$this-&gt;load-&gt;helper('number');</code>
       <p>The following functions are available:</p>
-      <h2>dividable_by_zero()</h2>
+      <h2>divide_safe()</h2>
       <p>Divide numbers if the second parameter is not zero, in this case, just
         returns 0.</p>
-      <code>
-        echo dividable_by_zero(10, 2); // Returns 5<br />
-        echo dividable_by_zero(10,0); // Returns </code><br />
+      <code> echo divide_safe(10, 2); // Returns 5<br />
+        echo divide_safe(10,0); // Returns 0</code><br />
       <h2>my_format_number()</h2>
       <p>Returns a number in a specific format, including money symbols.
         Examples:</p>
-      <code>
-        echo my_format_number(456); // Returns 456<br />
+      <code> echo my_format_number(456); // Returns 456<br />
         echo my_format_number(456, 2); // Returns 456<br />
         echo my_format_number(456.1, 2); // Returns 456.10<br />
-        echo my_format_number(456.251, 2, "€"); // Returns €456.</code><br />
+        echo my_format_number(456.251, 2, "euro"); // Returns €456.25</code><br />
       <h2>to_boolean()</h2>
       <p>Convert to boolean a variable, potentially in text format. Examples:</p>
-      <code>
-        echo to_boolean (TRUE); //Returns true<br />
+      <code> echo to_boolean (TRUE); //Returns true<br />
         echo to_boolean("false"); //Returns false<br />
-        echo to_boolean (0); //Returns false</code>
-    </div>
+        echo to_boolean (0); //Returns false</code> </div>
     <div id="footer">
-      <p>
-        Previous Topic:  <a href="inflector_helper.html">Inflector Helper</a>
-           ·  
-        <a href="#top">Top of Page</a>   ·  
-        <a href="../index.html">User Guide Home</a>   ·  
-        Next Topic:  <a href="path_helper.html">Path Helper</a>
-      </p>
+      <p> Previous Topic:  <a href="inflector_helper.html">Inflector Helper</a>
+           ·   <a href="#top">Top of Page</a>   ·   <a href="../index.html">User
+          Guide Home</a>   ·   Next Topic:  <a href="path_helper.html">Path
+          Helper</a> </p>
       <p><a href="http://codeigniter.com">CodeIgniter</a>  ·  Copyright © 2006 -
         2012  ·  <a href="http://ellislab.com/">EllisLab, Inc.</a></p>
     </div>

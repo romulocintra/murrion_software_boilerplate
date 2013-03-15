@@ -7,7 +7,7 @@
  * @param integer
  * @param integer
  */
-function dividable_by_zero($a, $b)
+function divide_safe($a, $b)
 {
 	if ($b == 0)
 	{
