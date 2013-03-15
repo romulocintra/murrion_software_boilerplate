@@ -200,6 +200,87 @@ if (defined('ENVIRONMENT'))
  *
  */
 require_once BASEPATH.'core/CodeIgniter.php';
+register_shutdown_function('handleFatalErrors');
+
+function handleFatalErrors($type = "php", $message = "")
+{
+	$CI = & get_instance();
+
+    if ($type == "php")
+    {
+    	$error = error_get_last();
+    }
+
+    if (!$CI->config->item("development") && (($type == "php" && is_array($error) && isset($error["message"])) || ($type == "database" && $message != "")))
+    {
+        $mail_life = 3600;
+        $file_error = FCPATH. APPPATH . (($type == "php") ? "logs/error_php_last.txt" : "logs/error_db_last.txt");
+
+        if (!file_exists($file_error))
+        {
+            fopen($file_error, "a");
+            $filemtime = FALSE;
+        }
+        else
+        {
+            $filemtime = filemtime($file_error);
+        }
+
+        if (!$filemtime or (time() - $filemtime >= $mail_life))
+        {
+            if (file_exists($file_error))
+            {
+                @touch($file_error);
+            }
+			
+			if ($type == "php")
+			{
+	            $bug_data_array = array(
+	                'type' => $error["type"],
+	                'site_name' => $CI->config->item('site_name'),
+	                'message' => $error["message"],
+	                'file' => $error["file"],
+	                'line' => $error["line"],
+	                'referrer' => $_SERVER['HTTP_REFERER'],
+	                'user_agent' => $_SERVER['HTTP_USER_AGENT']
+	            );
+				var_dump($bug_data_array);
+	         }
+			else
+			{
+	            $bug_data_array = array(
+	                'type' => "Database error",
+	                'site_name' => $CI->config->item('site_name'),
+	                'message' => $CI->db->last_query(),
+	                'file' => "",
+	                'line' => "",
+	                'referrer' => element("HTTP_REFERER", $_SERVER),
+	                'user_agent' => element("HTTP_USER_AGENT", $_SERVER)
+	            );
+			}
+
+            /*
+             * POST bug data to Murrion.net
+             */
+            $curl = curl_init('http://murrion.net/bugs/receive');
+            curl_setopt($curl, CURLOPT_HEADER, FALSE);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 3);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, 'data=' . base64_encode(serialize(json_encode($bug_data_array))));
+
+            $json_response = curl_exec($curl);
+            $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+            if ($status != 200)
+            {
+                echo "Error submitting a bug report to Murrion. Status: $status Response : $json_response";
+            }
+
+            curl_close($curl);
+        }
+    }
+}
 
 /* End of file index.php */
 /* Location: ./index.php */
