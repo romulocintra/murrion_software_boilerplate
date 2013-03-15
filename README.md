@@ -1,4 +1,24 @@
-murrion_software_boilerplate
+Murrion Software  Boilerplate
 ============================
 
-Our starting point for codeigniter based projects
+- CodeIgniter Version: 2.1.3
+
+Developers on this Project
+--------------------------
+
+- Gordon Murray
+
+- Alejandro Bernabe
+
+- Paco Bernabe
+
+- Manuel Raya
+
+- David Jeffery
+
+Other
+-----
+
+- Garry Bennett
+
+- Colin Murray
