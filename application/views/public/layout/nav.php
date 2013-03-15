@@ -1,56 +1,16 @@
-<header class="site-header container">
+<header class="container">
+
+<h1><?php echo anchor("", $this->config->item("site_name"), "title='Go back to ".$this->config->item("site_name")." homepage.'") ?></h1>
 
 <?php if (!$this->user_model->is_logged_in()) : ?>
-	<?php echo anchor("", $this->config->item("site_name"), "title='Go back to ".$this->config->item("site_name")." homepage.'") ?>
-  <div class="btn-group login-button">
-    <button class="btn btn-primary trigger">Login</button>
-    <button class="btn btn-primary trigger dropdown-toggle">
-      <span class="caret"></span>
-    </button>
-    <div class="dropdown-menu" id="login-dropdown-form">
-      
-      <?php echo form_open("user/login", array("class" => "mini-login", "accept-charset" => "utf-8")) ?>
-        <p>
-          <label for="loginUsername" class="hide">Email</label>
-          <input name="user_email" type="text" id="loginUsername" placeholder="Email address" />
-        </p>
-        <p>
-          <label for="loginPassword" class="hide">Password</label>
-          <input name="user_password" type="password" id="loginPassword" placeholder="Password" />
-        </p>
-      
-        <p class="submit-container">
-          <input name="submit_login" type="submit" class="btn btn-primary" value="Login &raquo;" />
-        </p>
-
-        <hr>
-
-        <hr>
-        <aside>
-          <div>Forgot your password? <?php echo anchor("user/forgot", "Recover it here") ?>.</div>
-          <div>New user? <?php echo anchor("user/register", "Register now") ?>.</div>
-        </aside>
-      <?php echo form_close() ?>
-      
-    </div>
-  </div>
+    <a href="<?php echo site_url("user/login") ?>" class="btn btn-primary">Login</a><br />
+    Forgot your password? <?php echo anchor("user/forgot", "Recover it here") ?><br />
+    New user? <?php echo anchor("user/register", "Register now") ?>
 <?php else : ?>
-  <div class="row">
-    <div class="span5">
-      <?php echo anchor("", $this->config->item("site_name"), "class='logo ir' title='Go back to ".$this->config->item("site_name")." homepage.'") ?>
-    </div>
-    <div class="span7">
-      <div class="row account-details-box">
-        <div class="span5">
-          <div>Logged in as: <strong><?php echo $this->user_model->get_user_field("user_name") . " " . $this->user_model->get_user_field("user_last_name") ?></strong></div>
-          
-        </div>
-        <div class="span2">
-          <div><i class="icon-user"></i> <?php echo anchor("profile", "My Profile") ?></div>
-          <div><i class="icon-off"></i> <?php echo anchor("user/logout", "Log Out") ?></div>
-        </div>
-      </div>
-    </div>
+    Logged in as: <strong><?php echo $this->user_model->get_user_field("user_name") . " " . $this->user_model->get_user_field("user_last_name") ?></strong><br />
+    <?php echo anchor("user/password", "Change password") ?><br />
+    
+    <?php echo anchor("user/logout", "Log Out") ?>
 <?php endif ?>
 </header>
 

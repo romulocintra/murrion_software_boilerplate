@@ -180,4 +180,54 @@ class User_model extends MY_Model
 
         return 0;
     }
+    function login_user_logic($user_details)
+    {
+        $data = array();
+
+        if ($user_details)
+        {
+            if (!$user_details["user_active"])
+            {
+                $data["error"] = "You have registered for " . $this->config->item("site_name") . " but your account has not yet been activated.  When you registered an email was sent to you with a link to click on to activate your account. This email may have been automatically directed to your SPAM/BULK folder.<br /><br />
+" . anchor("user/resend_activation/".$user_details["user_id"], "Click here if you want to have the activation email resent to you.");
+            }
+
+            if (!isset($data["error"]) || !$data["error"])
+            {
+                $this->user_model->do_login($user_details["user_id"]);
+                $this->session->set_flashdata("message", "Logged in successfully");
+
+                if ($user_details["user_type"] == "user")
+                {
+					if ($this->session->flashdata("redirect_to") && stripos($this->session->flashdata("redirect_to"), "user/login") === FALSE)
+					{
+						redirect($this->session->flashdata("redirect_to"));
+					}
+					else
+					{
+						redirect("");
+					}
+                }
+            }
+        }
+        else
+        {
+            $too_many = $this->user_model->store_login_attempt($this->input->post("user_email"), "user");
+
+            if ($too_many)
+            {
+                $data["error"] = "Your account is currently suspended due to 5 invalid login attempts being made. " .
+                        "To re-activate your account click on the \"Forgotten your password\"" .
+                        " link to have a reset password sent to your e-mail";
+            }
+            else
+            {
+				$data["error"] = "Login Failed, please ensure that the email address and password that you have entered are correct and try again. ".
+					"If you have forgotten your password, you can have it reset and emailed to you using the ".anchor("user/forgot", "Forgotten your password")." function";
+            }
+        }
+
+        return element("error", $data, FALSE);
+    }
+
 }

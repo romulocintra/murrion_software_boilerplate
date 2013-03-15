@@ -17,10 +17,9 @@ class User extends CI_Controller {
         if ($this->input->post("submit_login"))
         {
             $user_details = $this->user_model->get_user(array(
-                // "user_type" => "customer",
                 "user_password" => md5($this->input->post("user_password")),
                 "user_email" => $this->input->post("user_email")
-                    ));
+			));
 
             $error = $this->user_model->login_user_logic($user_details, $data);
 
@@ -29,10 +28,6 @@ class User extends CI_Controller {
                 $data["error"] = $error;
             }
         }
-
-        // Facebook login integration
-
-        $data["loginUrl"] = $this->my_facebook_model->get_login_url();
 
         $this->load->view('public/user/login', $data);
     }
@@ -63,14 +58,6 @@ class User extends CI_Controller {
 		));
 
 		$data["captcha"] = $cap["image"];
-
-		$data["county_dropdown"] = $this->area_model->get_county_dropdown(array(
-			"field_name" => "user_county",
-			"county_id" => $this->input->post("user_county"),
-			"country_classname" => "span3",
-			"classname" => "span3",
-			"separated" => TRUE
-		));
 
 		$data["title"] = "Register or log into " . $this->config->item("site_name");
 		
@@ -131,8 +118,8 @@ class User extends CI_Controller {
                     $this->email->send();
 
                     $this->session->set_flashdata("message", "An email has been sent to " . $data["user_details"]["user_email"] .
-                            ", you will find a link in this email that must be clicked to activate your " .
-                            $this->config->item("site_name")." account (if this email is not in your inbox, please check your bulk/spam folder)");
+						", you will find a link in this email that must be clicked to activate your " .
+						$this->config->item("site_name")." account (if this email is not in your inbox, please check your bulk/spam folder)");
 
 					$this->user_model->do_login($return);
 
@@ -188,40 +175,13 @@ class User extends CI_Controller {
 
             $this->session->set_userdata("user_id", $data["user_details"]["user_id"]);
 
-			if ($this->user_model->is_firm_admin())
-			{
-				$message = "Hello " . $data["user_details"]["user_name"] . ",<br />" .
-						"Thank you for confirming your e-mail address. Now, the administrators must approve your account.";
-
-				// activate the firm
-				$this->firm_model->activate_firm($data["user_details"]["firm_id"], 1);
-				
-				// send email to admin saying that the user is active
-				$this->load->library("email");
-
-				$email_message = $this->load->view("private/email_templates/admin_firm_activated", $data, TRUE);
-
-				$config['mailtype'] = 'html';
-				$this->email->initialize($config);
-				$this->email->from($this->config->item("noreply_email"));
-
-				$this->email->to($this->config->item("info_email"));
-
-				$this->email->subject($this->config->item("site_name")." firm activated");
-				$this->email->message($email_message);
-				$this->email->send();
-				//////
-			}
-			else
-			{
-				$message = "Hello " . $data["user_details"]["user_name"] . ",<br />" .
-						"Thank you for registering for " . $this->config->item("site_name") . ", your account is now active.<br />";
-			}
+			$message = "Hello " . $data["user_details"]["user_name"] . ",<br />" .
+					"Thank you for registering for " . $this->config->item("site_name") . ", your account is now active.<br />";
 
             $this->session->set_flashdata("message", $message);
 
             // redirect to the proper page
-            $this->user_model->user_registration_redirect("redirect", "account");
+            redirect("");
         }
         else
         {
@@ -271,8 +231,7 @@ class User extends CI_Controller {
             {
                 $user_details = $this->user_model->get_user(array(
                     "user_email" => $this->input->post("user_email"),
-                        //"is_not_facebook_user" => TRUE,
-                        ));
+				));
 
                 if ($user_details)
                 {
@@ -389,7 +348,7 @@ class User extends CI_Controller {
         $data["user_details"] = $this->user_model->get_user(array(
             "user_activation_token" => $token,
             "user_active" => 1,
-                ));
+		));
 
         if ($data["user_details"])
         {
@@ -460,7 +419,7 @@ class User extends CI_Controller {
                     if ($return)
                     {
                         $this->session->set_flashdata("message", "Password modified successfully");
-                        redirect("account");
+                        redirect("");
                     }
                     else
                     {

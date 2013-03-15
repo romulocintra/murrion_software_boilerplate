@@ -366,6 +366,7 @@ $config['proxy_ips'] = '';
 $config['db_prefix'] = 'mur';
 $config['local'] = FALSE;
 $config['site_name'] = "Boilerplate";
+$config['noreply_email'] = "no-reply@example.com";
 
 $current_url = $_SERVER["SERVER_NAME"];
 switch ($current_url)

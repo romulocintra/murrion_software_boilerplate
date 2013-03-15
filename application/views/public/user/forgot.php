@@ -1,6 +1,5 @@
 <?php $this->load->view("public/layout/header") ?>
 
-<?php $this->load->view("public/home/today") ?>
 
 <h3>Recover your <?php echo $this->config->item("site_name") ?> Password.</h3>
 
