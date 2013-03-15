@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 3.4.5
--- http://www.phpmyadmin.net
---
--- Servidor: localhost
--- Tiempo de generación: 15-03-2013 a las 12:21:40
--- Versión del servidor: 5.5.16
--- Versión de PHP: 5.3.8
+/*CREATE DATABASE IF NOT EXISTS `boilerplate` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;*/
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +10,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `boilerplate`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `mur_captcha`
+-- Table structure for `mur_captcha`
 --
 
 CREATE TABLE `mur_captcha` (
@@ -38,7 +25,7 @@ CREATE TABLE `mur_captcha` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mur_email_sent`
+-- Table structure for `mur_email_sent`
 --
 
 CREATE TABLE `mur_email_sent` (
@@ -57,7 +44,7 @@ CREATE TABLE `mur_email_sent` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mur_user`
+-- Table structure for `mur_user`
 --
 
 CREATE TABLE `mur_user` (
@@ -86,7 +73,7 @@ CREATE TABLE `mur_user` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mur_user_login`
+-- Table structure for `mur_user_login`
 --
 
 CREATE TABLE `mur_user_login` (
