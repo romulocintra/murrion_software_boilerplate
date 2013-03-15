@@ -21,8 +21,9 @@ function values_separated_by_comma()
  */
 function br2nl($string)
 {
-    return preg_replace('/\<br(\s*)?\/?\>/i', "\n", $string);
+    return strtr($string, array(PHP_EOL => '<br />', "\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />'));
 }
+
 
 function template_replace($template, $text)
 {

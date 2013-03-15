@@ -43,3 +43,15 @@ function my_format_number($num, $dec=FALSE, $mode="")
 	
 	return $return;
 }
+
+function to_boolean($value)
+{
+    if ($value && strtolower($value) !== "false")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

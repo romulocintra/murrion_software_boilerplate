@@ -130,3 +130,42 @@ function ago($time)
 
    return "$difference $periods[$j] ago ";
 }
+
+function time_remainig_text($start, $end)
+{
+	$seconds =  strtotime($end) - strtotime($start);
+
+	$days = floor($seconds / 86400);
+	
+	$hours = floor($seconds / 3600);
+	
+	$minutes = floor($seconds / 60);
+	
+	if ($days > 0)
+	{
+		if ($days ==1)
+		{
+			return "tomorrow";
+		}
+		else 
+		{
+			return $days. " days left";
+		}
+	}
+	elseif ($hours > 0)
+	{
+		if ($hours == 1)
+		{
+			return $hours. " hour left";
+		}
+		else 
+		{
+			return $hours. " hours left";
+		}
+	}
+	else 
+	{
+		return $minutes. " minutes left";	
+	}
+	
+}
