@@ -2,6 +2,7 @@
 
 /**
  * Returns provided arguments separated by comma
+ * Similar to implode, but removing empty values
  *
  * @access public
  */
@@ -32,7 +33,7 @@ function br2nl($string)
 }
 
 /**
- * Batch str_replace 
+ * str_replace for associative arrays
  *
  * @access public
  * @param array
