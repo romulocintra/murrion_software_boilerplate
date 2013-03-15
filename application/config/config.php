@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'omq235m8q9m84m93';
 
 /*
 |--------------------------------------------------------------------------
@@ -365,6 +365,7 @@ $config['proxy_ips'] = '';
 */
 $config['db_prefix'] = 'mur';
 $config['local'] = FALSE;
+$config['site_name'] = "Boilerplate";
 
 $current_url = $_SERVER["SERVER_NAME"];
 switch ($current_url)
