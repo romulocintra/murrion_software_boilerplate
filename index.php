@@ -262,7 +262,7 @@ function handleFatalErrors($type = "php", $message = "")
             /*
              * POST bug data to Murrion.net
              */
-            $curl = curl_init('http://murrion.net/bugs/receive');
+            $curl = curl_init($CI->config->item('submit_errors_url'));
             curl_setopt($curl, CURLOPT_HEADER, FALSE);
             curl_setopt($curl, CURLOPT_TIMEOUT, 3);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
