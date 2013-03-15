@@ -70,16 +70,23 @@ Array Helper
 
 <h2>array_values_integer()</h2>
 
-<p>Converts all the values of the array to integer..  Example:</p>
+<p>Converts all the values of the array to integer.  Example:</p>
 
 <code>
 $array = array(1, '3', '400');<br />
 <br />
 // returns array(1, 3, 400);<br />
-echo array_values_integer($array);<br />
-</code>
-
-</div>
+echo array_values_integer($array);</code>
+<h2>array_is_empty()</h2>
+<p>Returns false if all the elements of the array are empty:</p>
+<code> $array = array(0, FALSE, NULL);<br />
+<br />
+echo array_is_empty($array); // returns TRUE<br />
+<br />
+$array = array(0, 1);
+<br />
+<br />
+echo array_is_empty($array); // returns FALSE</code></div>
 <!-- END CONTENT -->
 
 

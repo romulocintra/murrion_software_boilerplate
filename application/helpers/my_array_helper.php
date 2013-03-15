@@ -29,14 +29,16 @@ function array_is_empty($array)
 		return TRUE;
 	}
 	
-	foreach ($array as $item)
-	{
-		if (empty($item))
-		{
-			return TRUE;
+	$total = count($array);
+	$vacio = 0;
+	
+	foreach ($array as $item) {
+		if (empty($item)) {
+			$vacio++;
 		}
 	}
-	return FALSE;
+	
+	return $vacio == $total;
 }
 
 /* End of file my_array_helper.php */
