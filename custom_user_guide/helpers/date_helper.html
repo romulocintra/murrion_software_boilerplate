@@ -68,6 +68,84 @@ Date Helper
 
 
 <p>The following functions are available:</p>
+<h2>american_date_to_mysql()</h2>
+<p>This function converts an american date (12/31/2013) to MySQL (2013-12-31)</p>
+<p>The first parameter is the  date. The second parameter determines if you want to output a DATE or a DATETIME. The third parameter can be &quot;start&quot; or &quot;end&quot; (by default &quot;start&quot;). If it's start, the time will be 00:00:00, if it's end, the time will be 23:59:59</p>
+<p>Example:</p>
+<code>echo american_date_to_mysql(&quot;12/31/2013&quot;); // returns 2013-12-31<br />
+<br />
+echo american_date_to_mysql(&quot;12/31/2013&quot;, TRUE); // returns 2013-12-31 00:00:00<br />
+<br />
+echo american_date_to_mysql(&quot;12/31/2013&quot;, TRUE, &quot;end&quot;); // returns 2013-12-31 23:59:59</code>
+<h2>normal_date_to_mysql()</h2>
+<p>This function is identical as american_date_to_mysql but it expects an european date (31/12/2013). The parameters and the output is the same.</p>
+<h2>my_now()</h2>
+<p>Very simple function that returns what &quot;NOW()&quot; would return in MySQL. Useful to avoid the use of date(&quot;Y-m-d H:i:s&quot;) too many times.
+</p>
+<h2>normal_datetime_to_mysql()</h2>
+<p>This function converts an european date/time string and converts it to a valid MySQL DATETIME.</p>
+<p>Example:</p>
+<code> echo normal_datetime_to_mysql(&quot;12/31/2013 23:00&quot;); // returns 2013-12-31 23:00:00<br />
+<br />
+echo normal_datetime_to_mysql(&quot;12/31/2013 23:30:40&quot;); // returns 2013-12-31 23:30:40</code>
+<h2>my_format_date()</h2>
+<p>This function centralizes all the formatting of dates.</p>
+<p>The first parameter is the date. It can be a date parseable by strtotime, a timestamp or NULL if you want to use the current date.</p>
+<p>The second parameter allows you to set an alternative string if the date is not parseable (by default it's empty).</p>
+<p>The third parameter lets you modify the format of the date.</p>
+<p>Example:</p>
+<code> echo my_format_date(&quot;2013-02-02&quot;); // returns 02-02-2013<br />
+<br />
+echo my_format_date(&quot;0000-00-00&quot;, &quot;N/A&quot;); // returns &quot;N/A&quot;<br />
+<br />
+echo my_format_date(&quot;2012-01-01&quot;, &quot;N/A&quot;, &quot;d/m/Y&quot;); // returns 01/01/2012
+<br />
+</code>
+<p></p>
+<h2>my_format_datetime()</h2>
+<p>This expects the same parameters as my_format_date() but it handles the time as well.</p>
+<h2>day_week_bounds()</h2>
+<p>This function returns an array for the start end the end of the week of the date received as parameter.</p>
+<p>Example:</p>
+<code> echo day_week_bounds(&quot;2013-03-15&quot;);<br />
+<br />
+/*<br />
+Returns<br />
+<br />
+array(2) {
+  [0]=>
+  string(19) "2013-03-10 00:00:00"
+  [1]=>
+  string(19) "2013-03-16 23:59:59"
+}
+<br />
+*/
+</code>
+<h2>month_generate_range()</h2>
+<p>This function returns the start or the end of a given month.</p>
+<p>The first parameter is the month number, the second one is the year.</p>
+<p>The third and fourth are optional parameters. The third is to determine the type (start/end) (by default start). The fourth one is to specify if you expect a DATE field or a DATETIME</p>
+<p>Example:</p>
+<code> echo month_generate_range(3, 2013); // returns 2013-03-01 00:00:00<br />
+<br />
+echo month_generate_range(3, 2013, &quot;end&quot;); // returns 2013-03-31 23:59:59<br />
+<br />
+echo month_generate_range(3, 2013, &quot;start&quot;, FALSE); // returns 2013-03-01<br />
+<br />
+</code>
+<h2>generate_daily_range()</h2>
+<p>This function returns the start or the end of a given day.</p>
+<p>The function is similar as month_generate_range() but the first parameter is for the day</p>
+<p>Example:</p>
+<code> echo month_generate_range(15, 3, 2013); // returns 2013-03-15 00:00:00<br />
+<br />
+echo month_generate_range(15, 3, 2013, &quot;end&quot;); // returns 2013-03-15 23:59:59<br />
+</code>
+<h2>ago()</h2>
+<p>This function returns a string that represents the time ago.</p>
+<p>The first parameter must be a date parseable by strtotime or a timestamp</p>
+<p>Example:</p>
+<code> echo ago(&quot;2013-01-01&quot;) // returns something like &quot;2 months ago&quot;</code>
 <h2>time_remainig_text()</h2>
 
 <p>This function returns a text explaining the difference between two tasks. With a precision of days.</p>

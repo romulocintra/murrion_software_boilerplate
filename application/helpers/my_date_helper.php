@@ -85,7 +85,18 @@ function normal_datetime_to_mysql($datetime)
  */
 function my_format_date($date, $default = "", $format= "d-M-Y")
 {
-	$totime = strtotime($date);
+    if (is_int($date))
+    {
+        $totime = $date;
+    }
+    else if ($date === NULL)
+    {
+        $totime = time();
+    }
+    else
+    {
+        $totime = strtotime($date);
+    }
 	
 	if ($totime > 0)
 	{
@@ -104,7 +115,7 @@ function my_format_date($date, $default = "", $format= "d-M-Y")
  * @param string
  * @param string
  */
-function my_format_datetime($datetime=NULL, $default = "")
+function my_format_datetime($datetime=NULL, $default = "", $format= "d/m/Y H:i:s")
 {
 	if ($datetime === NULL)
 	{
@@ -117,7 +128,7 @@ function my_format_datetime($datetime=NULL, $default = "")
 	
 	if ($totime > 0)
 	{
-		return date("d/m/Y H:i:s", $totime);
+		return date($format, $totime);
 	}
 	else
 	{
