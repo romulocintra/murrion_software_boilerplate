@@ -56,7 +56,16 @@ p {
 <body>
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
+		<?php
+		$CI =& get_instance();
+				
+		if ($CI->config->item("development")):
+			echo $message;
+		else:
+			echo "<p>We have detected an error.</p>";
+			handleFatalErrors("database", $message);
+		endif	
+		?>
 	</div>
 </body>
 </html>
