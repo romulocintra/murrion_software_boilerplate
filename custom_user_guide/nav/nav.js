@@ -19,7 +19,6 @@ function create_menu(basepath)
 		'<ul>' +
 		'<li><a href="'+base+'libraries/email.html">Email Class</a></li>' +
 		'<li><a href="'+base+'libraries/form_validation.html">Form Validation Class</a></li>' +
-		'<li><a href="'+base+'libraries/input.html">Input Class</a></li>' +
 		'</ul>' +
 
 		'</td><td class="td_sep" valign="top">' +
