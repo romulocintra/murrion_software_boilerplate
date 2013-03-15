@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Returns an array with months names
+ * Creates an array with all months names.
  *
  * @access public
  */
@@ -19,7 +19,8 @@ function get_month_dropdown()
 }
 
 /**
- * Returns an array with a year dropdown
+ * Creates an array with the years between start_year and end_year. 
+ * If not end_year provided, the array will end at system actual year.
  *
  * @access public
  * @param integer
@@ -39,7 +40,7 @@ function get_year_dropdown($start_year = 2013, $end_year = NULL)
 }
 
 /**
- * Returns an array with 24 hour list
+ * Create an array with all hours of the day
  *
  * @access public
  */
