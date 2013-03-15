@@ -68,24 +68,40 @@ Path Helper
 <p>The following functions are available:</p>
 
 
-<h2>set_realpath()</h2>
+<h2>my_absolute_path()</h2>
 
-<p>Checks to see if the path exists. This function will return a server path without symbolic links or relative directory structures. An optional second argument will cause an error to be triggered if the path cannot be resolved.</p>
-
-<code>$directory = '/etc/passwd';<br />
-echo set_realpath($directory);<br />
-// returns &quot;/etc/passwd&quot;<br />
+<p>This is a complex function that will generate an absolute path from some parameters. It has advanced features like the automatic creation of subfolders.</p>
+<p><strong>First parameter:</strong></p>
+<p>The path to the file. It can be an array of segments or a raw path.</p>
+<p>For example, both things would be valid:</p>
+<p>- array(&quot;uploads&quot;, &quot;temp&quot;, &quot;my_file.jpg&quot;);</p>
+<p>- &quot;uploads/temp/my_file.jpg&quot;</p>
+<p>The first version is the recommended way because it's more reliable. The segments will be joined using the desired directory separator.</p>
+<p><strong>Second parameter</strong>:</p>
+<p>By default it will use Codeiginter's installation folder. You can force it to use other folder.</p>
+<p><strong>Third parameter:</strong></p>
+<p>By default, system's default directory separator. You can force it to use another separator. If you are using Windows it will be&quot;\&quot; by default. On other systems it will use &quot;/&quot; as default.</p>
+<p><strong>Fourth parameter:</strong></p>
+<p>By default FALSE. Create subfolders, yes/no. It can attempt to create the subfolders of the path if they don't exist in the system.</p>
+<p><strong>Fifith parameter:</strong></p>
+<p>By default &quot;file&quot;. If you set it as &quot;folder&quot;, it will be considered as a folder. This is useful if you want to create the subfolders, if it's a file, the last segment of the path will be ignored, if it's a folder, all the segments will be used.</p>
+<p><code>$path = my_absolute_path(array(&quot;uploads&quot;, &quot;image.jpg&quot;));<br />
+  //return something like C:\xampp\htdocs\codeigniter\uploads\image.jpg<br />
+  <br />
+  $path = my_absolute_path(&quot;images/image.jpg&quot;, &quot;C:\&quot;);<br />
+  // returns C:\images\image.jpg<br />
+  <br />
+  $path = my_absolute_path(array(&quot;uploads&quot;, &quot;image.jpg&quot;), &quot;/home/&quot;, &quot;/&quot;);<br />
+  // returns /home/uploads/image.jpg<br />
+  <br />
+  $path = my_absolute_path(array(&quot;uploads&quot;, &quot;temp1&quot;, &quot;image.jpg&quot;), NULL, DIRECTORY_SEPARATOR, TRUE);<br />
+  // returns C:\xampp\htdocs\codeigniter\uploads\temp1\image.jpg and it creates the &quot;uploads&quot; and &quot;temp1&quot; folders if they didn't exist.
+  <br />
+  <br />
+  $path = my_absolute_path(array(&quot;uploads&quot;, &quot;temp1&quot;, &quot;images&quot;), NULL, DIRECTORY_SEPARATOR, TRUE, &quot;folder&quot;);<br />
+// returns C:\xampp\htdocs\codeigniter\uploads\temp1\images and it creates the &quot;uploads&quot;, &quot;temp1&quot; AND &quot;images&quot; folders if they didn't exist. <br />
 <br />
-$non_existent_directory = '/path/to/nowhere';<br />
-echo set_realpath($non_existent_directory, TRUE);<br />
-// returns an <strong>error</strong>, as the path could not be resolved
-<br /><br />
-echo set_realpath($non_existent_directory, FALSE);<br />
-// returns &quot;/path/to/nowhere&quot;
-
-
-
-</code>
+</code></p>
 <h2>&nbsp;</h2>
 </div>
 <!-- END CONTENT -->
