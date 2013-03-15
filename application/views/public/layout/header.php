@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/<?php echo $style = ($this->config->item('site_style') == 'default') ? 'bootstrap.css' : 'styles/'.$this->config->item('site_style').'.css';?>" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="<?php echo base_url(); ?>assets/css/app.css" rel="stylesheet">
     
