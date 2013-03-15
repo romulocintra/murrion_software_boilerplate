@@ -1,3 +1,4 @@
+<?php
 function update_or_insert($table, $primary, $where, $insert)
 {
 	$CI = &get_instance();

@@ -64,19 +64,22 @@ Database Helper
 <h2>Loading this Helper</h2>
 
 <p>This helper is loaded using the following code:</p>
-<code>$this->load->helper('Database');</code>
+<code>$this->load->helper('database');</code>
 
 <p>The following functions are available:</p>
 
-<h2>Database_values_integer()</h2>
+<h2>update_or_insert($table, $primary, $where, $insert)</h2>
 
-<p>Converts all the values of the Database to integer..  Example:</p>
+<p>Inserts a new record in a Database if the record doesn't exists or updates it.</p>
+<p> The first parameter will   contain the name of the table,  the second parameter will contain the name of the primary key column, the third parameter will contain and associative array with the conditions that will be passed to $this-&gt;db-&gt;where() and the fourth parameter contains the associative array with the data you are going to enter to the Database. </p>
+<p>It returns the ID of the record.</p>
+<p>Example:</p>
 
-<code>
-$Database = Database(1, '3', '400');<br />
+<code>$where = array(&quot;user_email&quot; =&gt; &quot;me@example.com&quot;);<br />
+$insert = array(&quot;user_email&quot; =&gt; &quot;me@example.com&quot;, &quot;user_password&quot; =&gt; md5(&quot;my_password&quot;));<br />
 <br />
-// returns Database(1, 3, 400);<br />
-echo Database_values_integer($Database);<br />
+// returns $user_id<br />
+echo update_or_insert(&quot;mur_user&quot;, &quot;user_id&quot;, $where, $insert);<br />
 </code>
 
 </div>
