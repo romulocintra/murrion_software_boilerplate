@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Update or Insert values in DB
+ * Inserts a new record in a Database if the record doesn't exists or updates it.
  *
  * @access public
  * @param string
