@@ -1,4 +1,10 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Returns provided arguments separated by comma
+ *
+ * @access public
+ */
 function values_separated_by_comma()
 {
 	$output_arr = array();
@@ -13,6 +19,7 @@ function values_separated_by_comma()
 	
 	return implode(", ", $output_arr);
 }
+
 /**
  * Convert BR tags to nl
  *
@@ -24,7 +31,13 @@ function br2nl($string)
     return strtr($string, array(PHP_EOL => '<br />', "\r\n" => '<br />', "\r" => '<br />', "\n" => '<br />'));
 }
 
-
+/**
+ * Batch str_replace 
+ *
+ * @access public
+ * @param array
+ * @param string
+ */
 function template_replace($template, $text)
 {
 	foreach ($template as $code => $value)
@@ -34,3 +47,6 @@ function template_replace($template, $text)
 
 	return $text;
 }
+
+/* End of file my_string_helper.php */
+/* Location: ./application/helpers/my_string_helper.php */

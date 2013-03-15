@@ -1,4 +1,15 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * .
+ *
+ * @access public
+ * @param array
+ * @param string
+ * @param string
+ * @param boolean
+ * @param string
+ */
 function my_absolute_path($segments = array(), $basepath = NULL, $sep = DIRECTORY_SEPARATOR, $create_subfolders = FALSE, $mode="file")
 {
 	$basepath = $basepath ? rtrim($basepath," /") : realpath(".");
@@ -39,3 +50,6 @@ function my_absolute_path($segments = array(), $basepath = NULL, $sep = DIRECTOR
 	return $basepath.$sep.(
 		is_array($segments) ? implode($sep, $segments) : $segments);
 }
+
+/* End of file my_path_helper.php */
+/* Location: ./application/helpers/my_path_helper.php */

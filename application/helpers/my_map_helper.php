@@ -1,4 +1,15 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Returns the distance between two pairs of coords
+ *
+ * @access public
+ * @param string
+ * @param string
+ * @param string
+ * @param string
+ * @param string
+ */
 function point_distance($lat1, $lon1, $lat2, $lon2, $unit)
 { 
 	$theta = $lon1 - $lon2; 
@@ -21,6 +32,14 @@ function point_distance($lat1, $lon1, $lat2, $lon2, $unit)
 		return $miles;
 	}
 }
+
+/**
+ * Returns coords from provided address
+ *
+ * @access public
+ * @param string
+ * @param string
+ */
 $addresses_searched = array();
 function coordinates_from_address($address, $output_mode = "array")
 {
@@ -70,3 +89,6 @@ function coordinates_from_address($address, $output_mode = "array")
 		return NULL;
 	}	
 }
+
+/* End of file my_form_helper.php */
+/* Location: ./application/helpers/my_form_helper.php */

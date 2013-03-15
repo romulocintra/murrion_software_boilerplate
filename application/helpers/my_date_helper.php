@@ -1,9 +1,27 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Convert american date to MySQL
+ *
+ * @access public
+ * @param string
+ * @param boolean
+ * @param boolean
+ */
 function american_date_to_mysql($date, $datetime=FALSE, $start=TRUE)
 {
     $date = explode("/", $date);
     return $date[2] . "-" . $date[0] . "-" . $date[1] . ($datetime ? " " . ($start ? "00:00:00" : "23:59:59") : "");
 }
+
+/**
+ * Convert normal date to MySQL
+ *
+ * @access public
+ * @param string
+ * @param boolean
+ * @param boolean
+ */
 function normal_date_to_mysql($date, $datetime=FALSE, $start=TRUE)
 {
     $date = explode("/", $date);
@@ -17,10 +35,24 @@ function normal_date_to_mysql($date, $datetime=FALSE, $start=TRUE)
 	    return NULL;
     }
 }
+
+/**
+ * Local date in Y-m-d H:i:s format
+ *
+ * http://www.php.net/manual/en/datetime.formats.php
+ *
+ * @access public
+ */
 function my_now()
 {
 	return date("Y-m-d H:i:s");
 }
+
+/**
+ * Datetime to MySQL
+ *
+ * @access public
+ */
 function normal_datetime_to_mysql($datetime)
 {
 	$date = strpos($datetime, ":") === FALSE ? trim($datetime) : substr($datetime, 0, strpos($datetime, " "));
@@ -42,7 +74,16 @@ function normal_datetime_to_mysql($datetime)
 		return NULL;
 	}
 }
-function my_format_date($date, $default = "", $format="d-M-Y")
+
+/**
+ * Returns date in desired format
+ *
+ * @access public
+ * @param string
+ * @param string
+ * @param string
+ */
+function my_format_date($date, $default = "", $format= "d-M-Y")
 {
 	$totime = strtotime($date);
 	
@@ -55,6 +96,14 @@ function my_format_date($date, $default = "", $format="d-M-Y")
 		return $default;
 	}
 }
+
+/**
+ * Returns datetime in desired format (or d/m/Y H:i:s by default)
+ *
+ * @access private
+ * @param string
+ * @param string
+ */
 function my_format_datetime($datetime=NULL, $default = "")
 {
 	if ($datetime === NULL)
@@ -75,6 +124,13 @@ function my_format_datetime($datetime=NULL, $default = "")
 		return $default;
 	}
 }
+
+/**
+ * Limits the days of the week
+ *
+ * @access public
+ * @param string
+ */
 function day_week_bounds($day)
 {
 	$day = substr($day, 0, 10); // only date-part
@@ -89,18 +145,45 @@ function day_week_bounds($day)
 	
 	return array(date("Y-m-d", $start_day)." 00:00:00", date("Y-m-d", $end_day)." 23:59:59");
 }
-function month_generate_range($month, $year, $type='start', $datetime=TRUE)
+
+/**
+ * .
+ *
+ * @access public
+ * @param integer
+ * @param integer
+ * @param string
+ * @param boolean
+ */
+function month_generate_range($month, $year, $type = 'start', $datetime=TRUE)
 {
     return $type == 'start' ?
 	    $year . "-" . str_pad($month, 2, '0', STR_PAD_LEFT) . "-01" . ($datetime ? " 00:00:00" : "") :
 	    $year . "-" . str_pad($month, 2, '0', STR_PAD_LEFT) . "-31" . ($datetime ? " 23:59:59" : "");
 }
 
+/**
+ * .
+ *
+ * @access public
+ * @param integer
+ * @param integer
+ * @param integer
+ * @param string
+ * @param boolean
+ */
 function generate_daily_range($day, $month, $year, $type='start', $datetime=TRUE)
 {
     return $year . "-" . str_pad($month, 2, '0', STR_PAD_LEFT) . "-" . str_pad($day, 2, '0', STR_PAD_LEFT) . 
 		($datetime ? ($type == "start" ? " 00:00:00" : " 23:59:59") : "");
 }
+
+/**
+ * Returns the time that ago from provided date
+ *
+ * @access public
+ * @param string
+ */
 function ago($time)
 {
 	if (!is_int($time))
@@ -131,7 +214,14 @@ function ago($time)
    return "$difference $periods[$j] ago ";
 }
 
-function time_remainig_text($start, $end)
+/**
+ * Returns what time remains from $start to $end
+ *
+ * @access public
+ * @param string
+ * @param string
+ */
+function time_remaining_text($start, $end)
 {
 	$seconds =  strtotime($end) - strtotime($start);
 
@@ -169,3 +259,6 @@ function time_remainig_text($start, $end)
 	}
 	
 }
+
+/* End of file my_date_helper.php */
+/* Location: ./application/helpers/my_date_helper.php */

@@ -1,4 +1,12 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Returns the division of provided numbers
+ *
+ * @access public
+ * @param integer
+ * @param integer
+ */
 function dividable_by_zero($a, $b)
 {
 	if ($b == 0)
@@ -10,7 +18,16 @@ function dividable_by_zero($a, $b)
 		return $a / $b;
 	}
 }
-function my_format_number($num, $dec=FALSE, $mode="")
+
+/**
+ * Returns the provided number on desired format
+ *
+ * @access public
+ * @param integer
+ * @param integer/boolean
+ * @param string
+ */
+function my_format_number($num, $dec = FALSE, $mode = "")
 {
 	$dec = $dec ? 2 : 0;
 	
@@ -44,6 +61,12 @@ function my_format_number($num, $dec=FALSE, $mode="")
 	return $return;
 }
 
+/**
+ * Returns a string as boolean
+ *
+ * @access public
+ * @param string
+ */
 function to_boolean($value)
 {
     if ($value && strtolower($value) !== "false")
@@ -55,3 +78,6 @@ function to_boolean($value)
         return false;
     }
 }
+
+/* End of file my_number_helper.php */
+/* Location: ./application/helpers/my_number_helper.php */

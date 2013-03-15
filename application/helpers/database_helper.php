@@ -1,4 +1,14 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Update or Insert values in DB
+ *
+ * @access public
+ * @param string
+ * @param string
+ * @param array
+ * @param array
+ */
 function update_or_insert($table, $primary, $where, $insert)
 {
 	$CI = &get_instance();
@@ -23,3 +33,6 @@ function update_or_insert($table, $primary, $where, $insert)
 		return $CI->db->insert_id();
 	}
 }
+
+/* End of file database_helper.php */
+/* Location: ./application/helpers/database_helper.php */

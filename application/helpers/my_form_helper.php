@@ -1,4 +1,10 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Returns an array with months names
+ *
+ * @access public
+ */
 function get_month_dropdown()
 {
 	$month_list = array();
@@ -11,7 +17,15 @@ function get_month_dropdown()
 	}
 	return $month_list;
 }
-function get_year_dropdown($start_year=2011, $end_year=NULL)
+
+/**
+ * Returns an array with a year dropdown
+ *
+ * @access public
+ * @param integer
+ * @param integer
+ */
+function get_year_dropdown($start_year = 2013, $end_year = NULL)
 {
 	$end_year = $end_year ? $end_year : date("Y");
 	$year_list = array();
@@ -23,6 +37,12 @@ function get_year_dropdown($start_year=2011, $end_year=NULL)
 	}
 	return $year_list;
 }
+
+/**
+ * Returns an array with 24 hour list
+ *
+ * @access public
+ */
 function get_hour_dropdown()
 {
 	$hour_list = array();
@@ -34,7 +54,14 @@ function get_hour_dropdown()
 	}
 	return $hour_list;
 }
-function get_minute_dropdown($interval=1)
+
+/**
+ * Returns an array with minutes list
+ *
+ * @access public
+ * @param integer
+ */
+function get_minute_dropdown($interval = 1)
 {
 	$minute_list = array();
 	
@@ -49,3 +76,6 @@ function get_minute_dropdown($interval=1)
 	}
 	return $minute_list;
 }
+
+/* End of file my_form_helper.php */
+/* Location: ./application/helpers/my_form_helper.php */
