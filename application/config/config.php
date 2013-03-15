@@ -364,7 +364,6 @@ $config['proxy_ips'] = '';
 |
 */
 $config['db_prefix'] = 'mur';
-
 $config['local'] = FALSE;
 
 $current_url = $_SERVER["SERVER_NAME"];

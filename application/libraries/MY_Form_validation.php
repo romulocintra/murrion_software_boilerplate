@@ -11,8 +11,8 @@
  * Note that this update should be used with the
  * form_validation library introduced in CI 1.7.0
  */
-class MY_Form_validation extends CI_Form_validation {
-
+class MY_Form_validation extends CI_Form_validation
+{
 	function __construct($config = array())
 	{
 	    parent::__construct($config);
@@ -57,7 +57,8 @@ class MY_Form_validation extends CI_Form_validation {
 		
 		return TRUE;
 	}
-	function check_captcha($val) {
+	function check_captcha($val)
+	{
 		$CI =& get_instance();
 		
 		if (!empty($val))
@@ -82,20 +83,6 @@ class MY_Form_validation extends CI_Form_validation {
 			$CI->form_validation->set_message('check_captcha',"Enter security words in the red box below");
 			return FALSE;
 		}
-	}
-	
-	function email_domain($val, $source_email)
-	{
-		$source_domain = substr($val, strrpos($val, "@"));
-		$dest_domain = substr($source_email, strrpos($source_email, "@"));
-		
-		if ($source_domain != $dest_domain)
-		{
-			$this->set_message("email_domain", "E-mail domain cannot be different than firm administrators (".$dest_domain.")");
-			return FALSE;
-		}
-		
-		return TRUE;
 	}
 
 	// --------------------------------------------------------------------
@@ -123,19 +110,6 @@ class MY_Form_validation extends CI_Form_validation {
 
         return TRUE;
     }
-	
-	function validate_linkedin($url)
-	{	
-		if ($this->valid_url($url) && stripos($url, "linkedin.com") !== FALSE)
-		{
-			return TRUE;
-		}
-		else
-		{
-			$this->set_message("validate_linkedin", "The %s field doesn't contain a valid linkedin profile");
-			return FALSE;
-		}
-	}
 }
 
 /* End of file MY_Form_validation.php */
