@@ -357,6 +357,33 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+/*
+|--------------------------------------------------------------------------
+| Murrion Boilerplate Custom settings
+|--------------------------------------------------------------------------
+|
+*/
+$config['db_prefix'] = 'mur';
+
+$config['local'] = FALSE;
+
+$current_url = $_SERVER["SERVER_NAME"];
+switch ($current_url)
+{
+    case "localhost":
+        $config['development'] = TRUE;
+		$config['local'] = TRUE;
+        break;
+    case "www.live.com":
+    case "live.com":
+        $config['development'] = FALSE;
+        break;
+    case "www.test.com":
+    case "test.com":
+        $config['development'] = TRUE;
+       break;
+}
+
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
