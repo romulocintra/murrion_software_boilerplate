@@ -1,14 +1,14 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * .
+ * Returns an absolute path from the parameters received
  *
  * @access public
- * @param array
- * @param string
- * @param string
- * @param boolean
- * @param string
+ * @param $segments array => it may be an array of segments of the path or a raw string
+ * @param $basepath string => the starting point for the path. By default it will be the root folder of the codeigniter installation
+ * @param $sep string => the director separator to use. By default it uses system's separator
+ * @param $create_subfolders boolean => it can create the subfolders automatically if they don't exist
+ * @param $mode string => if it's a folder, it can create it, if it's a file, the last segment must be ignored.
  */
 function my_absolute_path($segments = array(), $basepath = NULL, $sep = DIRECTORY_SEPARATOR, $create_subfolders = FALSE, $mode="file")
 {
