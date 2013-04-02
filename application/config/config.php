@@ -368,6 +368,8 @@ $config['local'] = FALSE;
 $config['site_name'] = "Boilerplate";
 $config['site_style'] = 'default'; // amelia, cyborg, slate or default
 $config['noreply_email'] = "no-reply@example.com";
+$config['submit_errors_url'] = 'http://example.com/bugs/receive';
+
 
 $current_url = $_SERVER["SERVER_NAME"];
 switch ($current_url)

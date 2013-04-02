@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Dropdown with Credit Card types
+ *
+ * @access public
+ */
 function realex_credit_cards()
 {
 	return array(
@@ -8,6 +14,12 @@ function realex_credit_cards()
                 "MC" => "MasterCard",
                 "VISA" => "Visa");
 }
+
+/**
+ * Dropdown with Expiry date months
+ *
+ * @access public
+ */
 function realex_expiry_month()
 {
 	return array(
@@ -26,6 +38,11 @@ function realex_expiry_month()
                 "12" => "12-Dec",);
 }
 
+/**
+ * Dropdown with Expiry date years
+ *
+ * @access public
+ */
 function realex_expiry_year()
 {
 	$start = date("Y");
@@ -38,7 +55,15 @@ function realex_expiry_year()
 	
 	return $expiry_year;
 }
-function xml2array($xml){
+
+/**
+ * Callback function to parse the XML into an array
+ *
+ * @access public
+ * @param  string
+ */
+function xml2array($xml)
+{
     $opened = array();
     $opened[1] = 0;
    
@@ -53,22 +78,27 @@ function xml2array($xml){
     
     $arrsize = sizeof($xmlarray);
     
-	for($j=0;$j<$arrsize;$j++){
+	for( $j=0; $j< $arrsize; $j++ ){
         $val = $xmlarray[$j];
-        switch($val["type"]){
+        switch($val["type"])
+        {
             case "open":
-                $opened[$val["level"]]=0;
+                $opened[$val["level"]] = 0;
             case "complete":
                 $index = "";
                 for($i = 1; $i < ($val["level"]); $i++)
                     $index .= "[" . $opened[$i] . "]";
+                
                 $path = explode('][', substr($index, 1, -1));
                 $value = &$array;
+                
                 foreach($path as $segment)
                     $value = &$value[$segment];
+                
                 $value = $val;
                 unset($value["level"]);
                 unset($value["type"]);
+                
                 if($val["type"] == "complete")
                     $opened[$val["level"]-1]++;
             break;
