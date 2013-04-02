@@ -26,7 +26,7 @@ class MY_Email extends CI_Email {
 	{
 		$CI =& get_instance();
 		
-		if ($CI->config->item("db_prefix"))
+		if ($CI->config->item("local"))
 		{
 			$sent = TRUE;
 		}
@@ -40,7 +40,7 @@ class MY_Email extends CI_Email {
 			if (!isset($this->_raw_cc)) $this->_raw_cc = null;
 			if (!isset($this->_raw_bcc)) $this->_raw_bcc = null;
 			
-			$CI->db->insert($CI->config->item("db_prefix")."_email_sent", array(
+			$CI->db->insert("mur_email_sent", array(
 				"email_sent_from" =>  $this->clean_email($this->_headers['From']),
 				"email_sent_to" => is_array($this->_recipients) ? implode(",", $this->_recipients) : $this->_recipients,
 				"email_sent_subject" => $this->_raw_subject,
